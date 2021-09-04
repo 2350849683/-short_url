@@ -1,12 +1,7 @@
 from app.models import url,url_index
 from app import db
-import redis   # 导入redis 模块
-
-
-
 cot={"max":None,"index":None}
 ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-r = redis.Redis(host='localhost', port=6500, decode_responses=True)
 
 def base62_encode(num, alphabet=ALPHABET):
     """
@@ -28,8 +23,11 @@ def get_max_index():
     获取拨号  +100
     :return: 最大拨号
     '''
-
-    return r.incr( "index", amount=100)
+    ot = url_index.query.first()
+    index=ot.index
+    ot.index=index+100
+    db.session.commit()
+    return index+100
 
 
 

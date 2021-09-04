@@ -1,6 +1,6 @@
-pymysq
-flask
-flask_sqlalchemy
-flask_script
-flask_migrate
-requests
+pymysql==0.10.1
+flask==1.1.1
+flask-sqlalchemy==2.4.4
+flask_script==1.1.1
+flask_migrate==2.7.0
+requests==2.21.0

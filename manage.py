@@ -2,7 +2,7 @@ from flask_script import Manager, Server
 from app import create_app, db
 from flask_migrate import Migrate, MigrateCommand, upgrade
 from app.models import *
-from app.service.fun import *
+
 app = create_app()
 manager = Manager(app)
 Migrate(app=app, db=db)
@@ -14,6 +14,7 @@ def deploy():  # 对应表执行操作
     upgrade()
     User.add_admin()
     url_index.init()
+
 if __name__ == '__main__':
     manager.run()
 
