@@ -24,10 +24,17 @@ class url(db.Model):
     id = db.Column(Integer, primary_key=True, autoincrement=True)
     short_url = db.Column(String(1000))
     long_url = db.Column(String(100))
+
 class url_index(db.Model):
     # 表的名字:
     __tablename__ = 'url_index'
-
     id = db.Column(Integer, primary_key=True, autoincrement=True)
     index=db.Column(Integer)
-
+    @staticmethod
+    def init():
+        all = url_index.query.all()
+        if len(all) > 0:        # 已经有初始值，不必添加
+            return
+        index = url_index(index=1)
+        db.session.add(index)
+        db.session.commit()
